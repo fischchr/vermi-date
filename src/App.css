@@ -1,38 +1,91 @@
-.App {
+@font-face {
+  font-family: 'VermiFont';
+  src: local('VermiFont'), url(./fonts/Obibok-Inversed.otf) format('opentype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+.start-screen {
+  background-color: #FFA1C9;
+  height: 100%;
+}
+
+.start-screen-button {
+  margin-top: 300px;
+}
+
+.questionaire {
+  background-color: #FFA1C9;
+  text-align: left;
+  width: 600px;
+}
+
+.match {
+  background-color: #FFA1C9;
   text-align: center;
+  width: 600px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.match-image {
+  width: 810px;
+  height: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.match-screen-button {
+  margin-top: 100px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.root {
+  background-color: #FFA1C9;
+  height: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  margin-top: 0px;
+  padding-top: 60px;
+  color: #008552;
+  font-family: VermiFont;
+  font-size: 4em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h2 {
+  margin-top: 0px;
+  padding-top: 60px;
+
+  color: #008552;
+  font-family: VermiFont;
+  font-size: 2.5em;
 }
+
+p {
+  font-family: VermiFont;
+  color: #008552;
+  font-size: 1.4em;
+}
+
+ul {
+  list-style: none; /* Remove default bullets */
+}
+
+ul li::before {
+  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: #008552; /* Change the color */
+  font-weight: bold; /* If you want it to be bold */
+  display: inline-block; /* Needed to add space between the bullet and the text */ 
+  width: 1em; /* Also needed for space (tweak if needed) */
+  margin-left: -1em; /* Also needed for space (tweak if needed) */
+  font-size: 3em;
+  position: absolute;
+  margin-top: -7px;
+}
+
+ul li {
+  margin-top: 20px;
+}
+
+paper-button {
+  text-transform: none;
+}
+
+
+
