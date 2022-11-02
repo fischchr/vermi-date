@@ -94,7 +94,7 @@ function Match(props) {
       "Address": "Rieterpark, Gablerstrasse 13-15, 8002 Zürich"
     },
     "Erin": {
-      "Text": "Dein Marroni-Date ist Erin! Ein Kastanienbaum mit grossen Früchten direkt neben einem Pin Pong Tisch – was will man mehr?",
+      "Text": "Dein Marroni-Date ist Erin! Ein Kastanienbaum mit grossen Früchten direkt neben einem Pin Pong Tisch – was willst du mehr?",
       "Address": "Schulhaus Sihlweid, Sihlweidstrasse 5, 8041 Zürich"
     },
     "Orlando": {
@@ -112,7 +112,6 @@ function Match(props) {
   }
 
   // Import image on demand
-  //const image = require(`assets/${match + ".png"}`);
   const image = <img className="match-image" src={images[match]} alt=""/>
 
   const resetButton = <Button 
@@ -150,12 +149,12 @@ class App extends React.Component {
 
     // Questionaire
     const question1 = {
-      "question": "Wie geniesst du dein Vermicelles am liebsten?",
+      "question": "Wie geniesst du dein Vermicelles?",
       "answers": [
-        "Minimalistisch: Vermicelles blutt – ohne Schnickschnack!", 
+        "Minimalistisch: Vermicelles pur – ohne Schnickschnack!", 
         "Einmal Coupe Nesselrode bitte!",
         "Ich bin offen für Neues: hat schon mal jemand Macha-Vermicelles probiert?",
-        "Mehr ist mehr: ohne Schlagrahm oder Meringues geht gar nicht und am liebsten noch einen halben Fruchtsalat dazu!",
+        "Mehr ist mehr: Ohne Schlagrahm oder Meringues geht gar nicht und am liebsten noch einen halben Fruchtsalat dazu!",
         "Eigentlich mag ich gar kein Vermicelles."],
       "weights": {
         0: [0, 20, 0, 5, 4],
@@ -169,11 +168,11 @@ class App extends React.Component {
     const question2 = {
       "question": "Welche Art von Ferien machst du am liebsten?",
       "answers": [
-        "Strandferien (auch im Winter)", 
-        "All Inclusive im Hotelkomplex.", 
-        "Wellness Wochenende zu Zweit.",
-        "Aktivferien: wer ruht, rostet.",
-        "Erlebnispark z.B. Conny Land."
+        "Solo Bella Italia (Frühling, Sommer, Herbst und Winter)", 
+        "All Inclusive mit Cocktail und Liegestuhl.", 
+        "Wellness Wochenende zu zweit.",
+        "Aktivferien: wer rastet, rostet.",
+        "Freizeitpark z.B. Conny Land."
       ],
       "weights": {
         0: [14, 0, 0, 0, 7],
@@ -185,7 +184,7 @@ class App extends React.Component {
     }
 
     const question3 = {
-      "question": "Mit welchem Sprichwort kannst du dich am besten identifizieren?",
+      "question": "Mit welchem Sprichwort kannst du dich identifizieren? ",
       "answers": [
         "Alles Gute kommt von oben.", 
         "Haben ist besser als brauchen.", 
@@ -203,7 +202,7 @@ class App extends React.Component {
     }
 
     const question4 = {
-      "question": "Wie würden dich deine Freund:innen am ehesten beschreiben?",
+      "question": "Wie würden dich deine Freund:innen am beschreiben?",
       "answers": [
         "Ich bin bekannt für meine Mon­dä­ni­tät.", 
         "Meine kreative Seite wird stets geschätzt.", 
