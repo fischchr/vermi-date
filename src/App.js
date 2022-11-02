@@ -9,6 +9,14 @@ import './App.css';
 import React from "react";
 import Button from '@mui/material/Button';
 
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return (array)
+}
+
 
 function StartScreen(props) {
   /* Function that renders the start screen */
@@ -231,11 +239,12 @@ class App extends React.Component {
     }
 
     // Put all questions into a list
-    this.questionaire = [question1, question2, question3, question4, question5]
+    this.questionaire = shuffle([question1, question2, question3, question4, question5])
     this.result = [[0], [0], [0], [0], [0]]
 
     // Currently displayed page of the app
     this.displayedPage = null
+    
 
     // Bind functions
     this.generateQuestionairePage = this.generateQuestionairePage.bind(this)
@@ -275,6 +284,9 @@ class App extends React.Component {
 
     // Clear the results
     this.result = [[0], [0], [0], [0], [0]]
+
+    // Shuffle the questions
+    this.questionaire = shuffle(this.questionaire)
 
     // Update state which triggers reloading the page
     this.setState(newState)
