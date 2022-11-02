@@ -10,11 +10,29 @@ import React from "react";
 import Button from '@mui/material/Button';
 
 function shuffle(array) {
+  /* Shuffle an array randomly */
+
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
   return (array)
+}
+
+function shuffleByIndex(array, order) {
+  /* Shuffle an array according to an order */
+
+  // Allocate memory for the result
+  const shuffledArray = []
+
+  for (let i = 0; i < array.length; i++) {
+    // Get the index of the next element
+    const j = order[i]
+    // Pull that element from the original array
+    shuffledArray.push(array[j])
+  }
+
+  return (shuffledArray)
 }
 
 
@@ -66,6 +84,7 @@ function Questionaire(props) {
     </center>
   )
 }
+
 
 function Match(props) {
   /* Function that renders the evaluation */
@@ -239,10 +258,15 @@ class App extends React.Component {
 
     // Put all questions into a list
     this.questionaire = shuffle([question1, question2, question3, question4, question5])
-    this.result = [[0], [0], [0], [0], [0]]
+
+    // Prepare the array that stores the result
+    this.result = [0, 0, 0, 0, 0]
 
     // Currently displayed page of the app
     this.displayedPage = null
+
+    // Current answer order
+    this.answerOrder = shuffle([0, 1, 2, 3, 4])
     
 
     // Bind functions
@@ -282,7 +306,7 @@ class App extends React.Component {
     newState.pageIndex = -1
 
     // Clear the results
-    this.result = [[0], [0], [0], [0], [0]]
+    this.result = [0, 0, 0, 0, 0]
 
     // Shuffle the questions
     this.questionaire = shuffle(this.questionaire)
@@ -297,9 +321,12 @@ class App extends React.Component {
     // Get the current question object
     const questionObject = this.questionaire[this.state.pageIndex]
 
+    // Get the original index of the answer 
+    const unshuffledAnswerIndex = this.answerOrder[answerIndex]
+
     // Get the weight of the answer
     for (let i = 0; i < 5; i++) {
-      this.result[i] = parseInt(this.result[i]) + parseInt(questionObject.weights[answerIndex][i])
+      this.result[i] = parseInt(this.result[i]) + parseInt(questionObject.weights[unshuffledAnswerIndex][i])
     }
 
     // Load next question
@@ -326,10 +353,14 @@ class App extends React.Component {
     // Get the question
     const questionObject = this.questionaire[index]
 
+    // Shuffle answers
+    this.answerOrder = shuffle(this.answerOrder)
+    const shuffledAnswers = shuffleByIndex(questionObject.answers, this.answerOrder)
+    
     // Generate the questionaire view
     this.displayedPage = <Questionaire 
       question={questionObject.question}
-      answers={questionObject.answers}
+      answers={shuffledAnswers}
       pageIndex={index + 1}
       numPages={this.questionaire.length}
       answerParser={this.parseAnswer}
