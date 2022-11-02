@@ -53,7 +53,8 @@ function Questionaire(props) {
         <ul>
           {rows}
         </ul>
-      </div>    
+      </div>  
+      <div className="questionaire-page-number">{props.pageIndex}/{props.numPages}</div>  
     </center>
   )
 }
@@ -318,6 +319,8 @@ class App extends React.Component {
     this.displayedPage = <Questionaire 
       question={questionObject.question}
       answers={questionObject.answers}
+      pageIndex={index + 1}
+      numPages={this.questionaire.length}
       answerParser={this.parseAnswer}
     />
   }

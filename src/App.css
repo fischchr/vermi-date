@@ -18,6 +18,13 @@
   background-color: #FFA1C9;
   text-align: left;
   width: 600px;
+  height: 1000px;
+}
+
+.questionaire-page-number {
+  color: #008552;
+  font-family: VermiFont;
+  text-align: center;
 }
 
 .match {
