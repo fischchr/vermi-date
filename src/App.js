@@ -66,6 +66,7 @@ function Questionaire(props) {
     // Make the button
     const button = <Button 
       vartiant="outlined"
+      disableRipple="true"
       sx = {{fontFamily: "VermiFont", textAlign: 'left', fontSize: "1.4em", textTransform: "none", color: "#008552",bgcolor: "#FFA1C9", "&:hover": {bgcolor: "#FFA1C9"}}}
       onClick={() => {props.answerParser(i)}}>
       {props.answers[i]}
