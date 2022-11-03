@@ -9,6 +9,7 @@ import './App.css';
 import React from "react";
 import Button from '@mui/material/Button';
 
+
 function shuffle(array) {
   /* Shuffle an array randomly */
 
@@ -133,10 +134,11 @@ function Match(props) {
   // Import image on demand
   const image = <img className="match-image" src={images[match]} alt=""/>
 
+  // use resetApp(-1) to go back to start page
   const resetButton = <Button 
       vartiant="contained"
       sx = {{fontFamily: "VermiFont", textTransform: "none", color: "white", fontSize: "30pt", bgcolor: "#008552", "&:hover": {bgcolor: "#008552"}}}
-      onClick={props.resetApp}>
+      onClick={() => props.resetApp(-1)}>
       Neues Date
     </Button>
 
@@ -172,7 +174,7 @@ class App extends React.Component {
       "answers": [
         "Minimalistisch: Vermicelles pur – ohne Schnickschnack!", 
         "Einmal Coupe Nesselrode bitte!",
-        "Ich bin offen für Neues: hat schon mal jemand Macha-Vermicelles probiert?",
+        "Ich bin offen für Neues: hat schon mal jemand Matcha-Vermicelles probiert?",
         "Mehr ist mehr: Ohne Schlagrahm oder Meringues geht gar nicht und am liebsten noch einen halben Fruchtsalat dazu!",
         "Eigentlich mag ich gar kein Vermicelles."],
       "weights": {
@@ -267,7 +269,9 @@ class App extends React.Component {
 
     // Current answer order
     this.answerOrder = shuffle([0, 1, 2, 3, 4])
-    
+
+    // Initialize timer
+    this.resetTimer = setTimeout(() => {}, 5)
 
     // Bind functions
     this.generateQuestionairePage = this.generateQuestionairePage.bind(this)
@@ -300,10 +304,15 @@ class App extends React.Component {
 
   }
 
-  resetQuestionaire() {
+  resetQuestionaire(newPageIndex) {
     // Update pageIndex
     var newState = this.state
-    newState.pageIndex = -1
+
+    // Generate new page
+    newState.pageIndex = newPageIndex
+    if (newPageIndex >= 0) {
+      this.generateQuestionairePage(newState.pageIndex)
+    }
 
     // Clear the results
     this.result = [0, 0, 0, 0, 0]
@@ -368,9 +377,17 @@ class App extends React.Component {
   }
 
   render() {
+    // Reset timer
+    clearTimeout(this.resetTimer)
+    
+
     if (this.state.pageIndex === -1) {
       // Initialize with the start screen
       this.displayedPage = <StartScreen startDate={this.stepQuestionaire} />
+    }
+    else {
+      // Start timer which resets the questionaire after 1 minute
+      this.resetTimer = setTimeout(() => {this.resetQuestionaire(-1)}, 60_000)
     }
 
     // Render the currently displayed page
