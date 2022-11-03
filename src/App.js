@@ -395,6 +395,11 @@ class App extends React.Component {
     return (
       <div>
         {this.displayedPage}
+        <img hidden src={Liliana_img} alt=""/>
+        <img hidden src={Frizi_img} alt=""/>
+        <img hidden src={Fridolin_img} alt=""/>
+        <img hidden src={Erin_img} alt=""/>
+        <img hidden src={Orlando_img} alt=""/>
       </div>
     );
   }
